@@ -33,10 +33,16 @@ a {
   min-height: 100vh;
 }
 
-.site-header {
-  position: sticky;
+.site-header-shell {
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
   z-index: 20;
+}
+
+.site-header {
   border-bottom: 1px solid var(--border);
   background: rgba(0, 0, 0, 0.72);
   backdrop-filter: blur(10px);
@@ -179,7 +185,7 @@ a {
 
 .hero {
   position: relative;
-  min-height: calc(100vh - var(--header-height));
+  min-height: 100vh;
   display: flex;
   align-items: flex-end;
   isolation: isolate;
@@ -354,7 +360,7 @@ a {
 }
 
 .content-page {
-  padding: 4.5rem 1rem 6rem;
+  padding: calc(4.5rem + var(--header-height)) 1rem 6rem;
 }
 
 .page-copy {
@@ -362,11 +368,58 @@ a {
   margin: 0 auto;
 }
 
+.gallery-page {
+  padding: calc(4rem + var(--header-height)) 1rem 6rem;
+}
+
+.gallery-inner {
+  width: 100%;
+  max-width: 44rem;
+  margin: 0 auto;
+}
+
+.gallery-title {
+  margin: 0 0 1.25rem;
+  text-align: center;
+  font-size: clamp(2.25rem, 8vw, 3.5rem);
+  line-height: 1;
+  font-weight: 600;
+}
+
+.gallery-intro {
+  max-width: 40rem;
+  margin: 0 auto 2.5rem;
+  color: var(--text-soft);
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.gallery-grid {
+  column-count: 1;
+  column-gap: 1rem;
+}
+
+.gallery-item {
+  break-inside: avoid;
+  margin: 0 0 1rem;
+  border: 1px solid var(--border);
+  background: #050505;
+  overflow: hidden;
+}
+
+.gallery-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 @media (min-width: 800px) {
   :root {
     --header-height: 88px;
   }
 
+  .site-header-shell,
   .site-header {
     min-height: var(--header-height);
   }
@@ -484,6 +537,43 @@ a {
   }
 
   .content-page {
-    padding: 5.5rem 0 7rem;
+    padding: calc(5.5rem + var(--header-height)) 0 7rem;
+  }
+
+  .gallery-page {
+    padding: calc(5.5rem + var(--header-height)) 0 7rem;
+  }
+
+  .gallery-inner {
+    max-width: var(--desktop-frame);
+  }
+
+  .gallery-title {
+    margin-bottom: 1.5rem;
+  }
+
+  .gallery-intro {
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+  }
+
+  .gallery-grid {
+    column-count: 2;
+    column-gap: 1.25rem;
+  }
+
+  .gallery-item {
+    margin-bottom: 1.25rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .gallery-grid {
+    column-count: 3;
+    column-gap: 1.5rem;
+  }
+
+  .gallery-item {
+    margin-bottom: 1.5rem;
   }
 }

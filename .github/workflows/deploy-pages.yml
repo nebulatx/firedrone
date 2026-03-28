@@ -32,6 +32,7 @@ jobs:
           mkdir -p _site/scripts _site/styles
           cp index.html _site/index.html
           cp acknowledgements.html _site/acknowledgements.html
+          cp gallery.html _site/gallery.html
           cp scripts/site.js _site/scripts/site.js
           cp styles/site.css _site/styles/site.css
           cp apple-touch-icon.png _site/apple-touch-icon.png
