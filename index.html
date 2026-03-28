@@ -3,68 +3,344 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fire Drone Show</title>
+    <title>Hekate's Torch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
-        color-scheme: light;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        background: #09111f;
-        color: #f7f7f2;
+        color-scheme: dark;
+        font-family: "Cinzel", serif;
+        background: #000000;
+        color: #f5f1e8;
+        --border: rgba(245, 241, 232, 0.18);
+        --text-soft: rgba(245, 241, 232, 0.76);
+        --header-height: 72px;
+        --desktop-frame: min(66.6667vw, 1200px);
       }
 
       * {
         box-sizing: border-box;
       }
 
+      html {
+        background: #000000;
+      }
+
       body {
         margin: 0;
         min-height: 100vh;
-        display: grid;
-        place-items: center;
-        background:
-          radial-gradient(circle at top, rgba(255, 133, 82, 0.28), transparent 38%),
-          linear-gradient(160deg, #09111f 0%, #13233d 45%, #09111f 100%);
+        background: #000000;
+        color: #f5f1e8;
       }
 
-      main {
-        width: min(680px, calc(100% - 3rem));
-        padding: 3rem;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 24px;
-        background: rgba(8, 14, 27, 0.72);
-        text-align: center;
-        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+      a {
+        color: inherit;
+        text-decoration: none;
       }
 
-      img {
-        display: block;
+      .site-shell {
+        min-height: 100vh;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        border-bottom: 1px solid var(--border);
+        background: #000000;
+      }
+
+      .header-inner {
         width: 100%;
-        height: auto;
-        margin: 0 auto 1.5rem;
-        border-radius: 18px;
-        box-shadow: 0 18px 48px rgba(0, 0, 0, 0.3);
+        margin: 0 auto;
       }
 
-      h1 {
-        margin: 0 0 1rem;
-        font-size: clamp(2.5rem, 7vw, 4.5rem);
+      .header-bar {
+        min-height: var(--header-height);
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.9rem 1rem;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+      }
+
+      .brand-name {
+        margin: 0;
+        font-size: 0.95rem;
+        font-weight: 600;
+        line-height: 1.2;
+      }
+
+      .menu-toggle {
+        width: 3rem;
+        height: 3rem;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.32rem;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+      }
+
+      .menu-toggle span {
+        width: 1.1rem;
+        height: 1px;
+        background: #f5f1e8;
+        transition: transform 180ms ease, opacity 180ms ease;
+      }
+
+      .site-nav {
+        display: none;
+        width: 100%;
+        border-top: 1px solid var(--border);
+        padding: 0.5rem 1rem 1rem;
+        background: #000000;
+      }
+
+      .site-nav[data-open="true"] {
+        display: block;
+      }
+
+      .site-nav-inner {
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .nav-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .nav-link {
+        display: block;
+        padding: 0.9rem 0;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: 0.82rem;
+        color: var(--text-soft);
+      }
+
+      .nav-link:hover,
+      .nav-link:focus-visible {
+        color: #ffffff;
+      }
+
+      .menu-toggle[aria-expanded="true"] span:nth-child(1) {
+        transform: translateY(0.42rem) rotate(45deg);
+      }
+
+      .menu-toggle[aria-expanded="true"] span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-toggle[aria-expanded="true"] span:nth-child(3) {
+        transform: translateY(-0.42rem) rotate(-45deg);
+      }
+
+      .hero {
+        position: relative;
+        min-height: calc(100vh - var(--header-height));
+        display: flex;
+        align-items: flex-end;
+        isolation: isolate;
+      }
+
+      .hero-image,
+      .hero-image img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .hero-image {
+        margin: 0;
+      }
+
+      .hero-image img {
+        display: block;
+        object-fit: cover;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0.72) 100%);
+        z-index: 1;
+      }
+
+      .hero-copy {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 72rem;
+        margin: 0 auto;
+        padding: 0 1rem 4rem;
+        text-align: center;
+      }
+
+      .hero h2 {
+        margin: 0;
+        font-size: clamp(3rem, 14vw, 7rem);
+        line-height: 0.92;
+        font-weight: 600;
+        text-transform: uppercase;
         letter-spacing: 0.08em;
+      }
+
+      .hero p {
+        margin: 0.9rem 0 0;
+        color: rgba(245, 241, 232, 0.9);
+        font-size: clamp(1rem, 4.2vw, 1.5rem);
+        line-height: 1.4;
+        letter-spacing: 0.16em;
         text-transform: uppercase;
       }
 
-      p {
-        margin: 0;
-        font-size: 1.125rem;
-        line-height: 1.7;
-        color: rgba(247, 247, 242, 0.88);
+      @media (min-width: 800px) {
+        :root {
+          --header-height: 88px;
+        }
+
+        .site-header {
+          min-height: var(--header-height);
+        }
+
+        .header-inner {
+          max-width: var(--desktop-frame);
+        }
+
+        .header-bar {
+          min-height: var(--header-height);
+          flex-wrap: nowrap;
+          padding: 0;
+        }
+
+        .brand-name {
+          font-size: 1.25rem;
+        }
+
+        .menu-toggle {
+          display: none;
+        }
+
+        .site-nav {
+          display: block;
+          width: auto;
+          border-top: 0;
+          padding: 0;
+          margin-left: auto;
+        }
+
+        .site-nav-inner {
+          padding: 0;
+        }
+
+        .nav-list {
+          flex-direction: row;
+          align-items: center;
+          gap: 2rem;
+        }
+
+        .nav-link {
+          padding: 0;
+          font-size: 0.92rem;
+        }
+
+        .hero-copy {
+          max-width: var(--desktop-frame);
+          padding: 0 0 5.5rem;
+        }
+
+        .hero h2 {
+          font-size: clamp(4.5rem, 8vw, 7.5rem);
+        }
+
+        .hero p {
+          font-size: 1.3rem;
+        }
       }
     </style>
   </head>
   <body>
-    <main>
-      <img src="assets/fire-drone-promo-34.webp" alt="Fire drone show promotional photo" />
-      <h1>Hello, world.</h1>
-      <p>Fire Drone Show is live on GitHub Pages and ready for the next build.</p>
-    </main>
+    <div class="site-shell">
+      <header class="site-header">
+        <div class="header-inner">
+          <div class="header-bar">
+            <a class="brand" href="#" aria-label="Hekate's Torch home">
+              <h1 class="brand-name">Hekate's Torch</h1>
+            </a>
+
+            <button
+              class="menu-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="site-nav"
+              aria-label="Open navigation"
+            >
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </button>
+
+            <nav class="site-nav" id="site-nav" data-open="false" aria-label="Primary">
+              <div class="site-nav-inner">
+                <ul class="nav-list">
+                  <li><a class="nav-link" href="#">Acknowledgements</a></li>
+                  <li><a class="nav-link" href="#">Gallery</a></li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <main class="hero">
+        <figure class="hero-image">
+          <img src="assets/P1057251-Edit.webp" alt="Fire performer with drones in the night sky" />
+        </figure>
+
+        <div class="hero-copy">
+          <h2>Hekate's Torch</h2>
+          <p>A Fire and Drone Show</p>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const menuToggle = document.querySelector(".menu-toggle");
+      const siteNav = document.querySelector("#site-nav");
+
+      if (menuToggle && siteNav) {
+        menuToggle.addEventListener("click", () => {
+          const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+          menuToggle.setAttribute("aria-expanded", String(!isOpen));
+          menuToggle.setAttribute("aria-label", isOpen ? "Open navigation" : "Close navigation");
+          siteNav.setAttribute("data-open", String(!isOpen));
+        });
+      }
+    </script>
   </body>
 </html>
