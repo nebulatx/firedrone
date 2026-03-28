@@ -63,4 +63,29 @@
       siteNav.setAttribute("data-open", String(!isOpen));
     });
   }
+
+  const videoShell = document.querySelector("[data-video-shell]");
+  const videoFrame = document.querySelector("[data-video-frame]");
+
+  if (videoShell && videoFrame && window.Vimeo && window.Vimeo.Player) {
+    const player = new window.Vimeo.Player(videoFrame);
+
+    const applyVideoRatio = (width, height) => {
+      if (!width || !height) {
+        return;
+      }
+
+      videoShell.style.setProperty("--video-ratio", `${width} / ${height}`);
+    };
+
+    player.on("loaded", () => {
+      Promise.all([player.getVideoWidth(), player.getVideoHeight()])
+        .then(([width, height]) => applyVideoRatio(width, height))
+        .catch(() => {});
+    });
+
+    player.on("resize", ({ videoWidth, videoHeight }) => {
+      applyVideoRatio(videoWidth, videoHeight);
+    });
+  }
 })();
