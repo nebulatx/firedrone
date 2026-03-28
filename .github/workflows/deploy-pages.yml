@@ -29,7 +29,18 @@ jobs:
         run: |
           mkdir -p _site
           mkdir -p _site/assets
+          mkdir -p _site/scripts _site/styles
           cp index.html _site/index.html
+          cp acknowledgements.html _site/acknowledgements.html
+          cp scripts/site.js _site/scripts/site.js
+          cp styles/site.css _site/styles/site.css
+          cp apple-touch-icon.png _site/apple-touch-icon.png
+          cp favicon-16x16.png _site/favicon-16x16.png
+          cp favicon-32x32.png _site/favicon-32x32.png
+          cp favicon.ico _site/favicon.ico
+          cp android-chrome-192x192.png _site/android-chrome-192x192.png
+          cp android-chrome-512x512.png _site/android-chrome-512x512.png
+          cp site.webmanifest _site/site.webmanifest
           if [ -d assets ]; then
             cp -R assets/. _site/assets/
             rm -f _site/assets/.gitkeep
