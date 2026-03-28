@@ -51,7 +51,9 @@
         top: 0;
         z-index: 20;
         border-bottom: 1px solid var(--border);
-        background: #000000;
+        background: rgba(0, 0, 0, 0.72);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
       }
 
       .header-inner {
@@ -111,7 +113,7 @@
         width: 100%;
         border-top: 1px solid var(--border);
         padding: 0.5rem 1rem 1rem;
-        background: #000000;
+        background: transparent;
       }
 
       .site-nav[data-open="true"] {
@@ -144,6 +146,16 @@
       .nav-link:hover,
       .nav-link:focus-visible {
         color: #ffffff;
+      }
+
+      .nav-link-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 10.5rem;
+        padding: 0.9rem 1.4rem;
+        border: 1px solid #f5f1e8;
+        color: #f5f1e8;
       }
 
       .menu-toggle[aria-expanded="true"] span:nth-child(1) {
@@ -187,7 +199,7 @@
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0.72) 100%);
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.48) 100%);
         z-index: 1;
       }
 
@@ -217,6 +229,168 @@
         line-height: 1.4;
         letter-spacing: 0.16em;
         text-transform: uppercase;
+      }
+
+      .hero-actions {
+        display: flex;
+        justify-content: center;
+        margin-top: 1.5rem;
+      }
+
+      .story-section {
+        padding: 4rem 1rem 4.5rem;
+      }
+
+      .story-inner {
+        width: 100%;
+        max-width: 44rem;
+        margin: 0 auto;
+      }
+
+      .story-section p {
+        margin: 0;
+        color: var(--text-soft);
+        font-size: 1rem;
+        line-height: 1.9;
+        letter-spacing: 0.01em;
+      }
+
+      .story-heading {
+        font-size: 1.18rem;
+        line-height: 1.75;
+      }
+
+      .story-section p + p {
+        margin-top: 1.5rem;
+      }
+
+      .story-section strong {
+        color: #f5f1e8;
+        font-weight: 700;
+      }
+
+      .credits-section {
+        padding: 0 1rem 5rem;
+      }
+
+      .sponsor-section {
+        padding: 0 1rem 4.5rem;
+      }
+
+      .sponsor-inner {
+        width: 100%;
+        max-width: 44rem;
+        margin: 0 auto;
+      }
+
+      .sponsor-title {
+        margin: 0 0 2rem;
+        text-align: center;
+        font-size: clamp(2.25rem, 8vw, 3.5rem);
+        line-height: 1;
+        font-weight: 600;
+      }
+
+      .sponsor-copy {
+        margin: 0;
+        color: var(--text-soft);
+        font-size: 1rem;
+        line-height: 1.9;
+        letter-spacing: 0.01em;
+      }
+
+      .sponsor-copy strong {
+        color: #f5f1e8;
+        font-weight: 700;
+      }
+
+      .sponsor-actions {
+        display: flex;
+        justify-content: center;
+        margin-top: 2.25rem;
+      }
+
+      .sponsor-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 12rem;
+        padding: 1.05rem 2rem;
+        border: 1px solid #f5f1e8;
+        background: transparent;
+        color: #f5f1e8;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: 1rem;
+      }
+
+      .sponsor-cta:hover,
+      .sponsor-cta:focus-visible {
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .credits-inner {
+        width: 100%;
+        max-width: 44rem;
+        margin: 0 auto;
+      }
+
+      .credits-title {
+        margin: 0 0 2rem;
+        text-align: center;
+        font-size: clamp(2.25rem, 8vw, 3.5rem);
+        line-height: 1;
+        font-weight: 600;
+      }
+
+      .credits-list {
+        margin: 0;
+      }
+
+      .credit-item + .credit-item {
+        margin-top: 1.5rem;
+      }
+
+      .credit-role {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 700;
+        color: #f5f1e8;
+      }
+
+      .credit-names {
+        margin: 0.35rem 0 0;
+        color: var(--text-soft);
+        font-size: 1rem;
+        line-height: 1.8;
+      }
+
+      .special-thanks {
+        margin-top: 3.5rem;
+        padding-top: 2.25rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .special-thanks p {
+        margin: 0;
+        color: var(--text-soft);
+        font-size: 1rem;
+        line-height: 1.9;
+      }
+
+      .special-thanks p + p {
+        margin-top: 1rem;
+      }
+
+      .special-thanks strong {
+        color: #f5f1e8;
+        font-weight: 700;
+      }
+
+      .special-thanks-actions {
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
       }
 
       @media (min-width: 800px) {
@@ -252,6 +426,7 @@
           border-top: 0;
           padding: 0;
           margin-left: auto;
+          background: transparent;
         }
 
         .site-nav-inner {
@@ -269,6 +444,11 @@
           font-size: 0.92rem;
         }
 
+        .nav-link-cta {
+          padding: 0.75rem 1.25rem;
+          font-size: 0.88rem;
+        }
+
         .hero-copy {
           max-width: var(--desktop-frame);
           padding: 0 0 5.5rem;
@@ -280,6 +460,62 @@
 
         .hero p {
           font-size: 1.3rem;
+        }
+
+        .hero-actions {
+          margin-top: 1.9rem;
+        }
+
+        .story-section {
+          padding: 5.5rem 0 6rem;
+        }
+
+        .story-inner {
+          max-width: 52rem;
+        }
+
+        .story-section p {
+          font-size: 1.1rem;
+        }
+
+        .story-heading {
+          font-size: 1.35rem;
+        }
+
+        .credits-section {
+          padding: 0 0 7rem;
+        }
+
+        .sponsor-section {
+          padding: 0 0 5.5rem;
+        }
+
+        .sponsor-inner {
+          max-width: 52rem;
+        }
+
+        .sponsor-copy {
+          font-size: 1.1rem;
+        }
+
+        .credits-inner {
+          max-width: 52rem;
+        }
+
+        .credits-title {
+          margin-bottom: 2.75rem;
+        }
+
+        .credit-role {
+          font-size: 1.05rem;
+        }
+
+        .credit-names {
+          font-size: 1.05rem;
+        }
+
+        .special-thanks p {
+          font-size: 1.05rem;
         }
       }
     </style>
@@ -310,6 +546,16 @@
                 <ul class="nav-list">
                   <li><a class="nav-link" href="#">Acknowledgements</a></li>
                   <li><a class="nav-link" href="#">Gallery</a></li>
+                  <li>
+                    <a
+                      class="nav-link nav-link-cta"
+                      href="https://www.pioneerfarms.org/event-tickets/p/fire-dancers-drone-show"
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      Buy Tickets
+                    </a>
+                  </li>
                 </ul>
               </div>
             </nav>
@@ -325,8 +571,120 @@
         <div class="hero-copy">
           <h2>Hekate's Torch</h2>
           <p>A Fire and Drone Show</p>
+          <div class="hero-actions">
+            <a
+              class="sponsor-cta"
+              href="https://www.pioneerfarms.org/event-tickets/p/fire-dancers-drone-show"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              Buy Tickets
+            </a>
+          </div>
         </div>
       </main>
+
+      <section class="story-section" aria-labelledby="story-heading">
+        <div class="story-inner">
+          <p id="story-heading" class="story-heading">
+            <strong>Hekate's Torch</strong> is a <strong>first-of-its-kind performance</strong> that
+            merges a <strong>drone light show</strong> with the elemental <strong>art of fire dancing</strong>.
+          </p>
+          <p>
+            Inspired by the goddess Hekate, the show opens with <strong>an ancient Greek hymn</strong> sung in her honor thousands of years ago. <strong>Five priestesses perform this ritual</strong> in the hope of invoking her presence and receiving her blessing, calling upon her light and fire to guide the world safely through its current crossroads and into transformation.
+          </p>
+        </div>
+      </section>
+
+      <section class="sponsor-section" aria-labelledby="sponsor-heading">
+        <div class="sponsor-inner">
+          <h3 class="sponsor-title" id="sponsor-heading">Sponsor</h3>
+          <p class="sponsor-copy">
+            And to everyone who contributed to the GoFundMe campaign, <strong>thank you.</strong>
+            The total cost of this production was approximately <strong>$12,000.</strong> Funding
+            beyond the grant was covered by <strong>Kacey and Nebula Collective</strong>, and your
+            contributions <strong>made a meaningful difference.</strong> The campaign remains live
+            for those who wish to continue supporting this work.
+          </p>
+          <div class="sponsor-actions">
+            <a
+              class="sponsor-cta"
+              href="https://www.gofundme.com/f/help-launch-a-firstofitskind-fire-drone-performance"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              GoFundMe
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="credits-section" aria-labelledby="credits-heading">
+        <div class="credits-inner">
+          <h3 class="credits-title" id="credits-heading">Credits</h3>
+
+          <div class="credits-list">
+            <div class="credit-item">
+              <p class="credit-role">Concept, Direction</p>
+              <p class="credit-names">Kacey Samiee</p>
+            </div>
+
+            <div class="credit-item">
+              <p class="credit-role">Drone Design</p>
+              <p class="credit-names">Mason Hayes, Bryan Assi, Kacey Samiee</p>
+            </div>
+
+            <div class="credit-item">
+              <p class="credit-role">Drone Operations</p>
+              <p class="credit-names">Shawn Jones, Bryan Assi, Brandon Veihl, Owen Schneider</p>
+            </div>
+
+            <div class="credit-item">
+              <p class="credit-role">Audio Design</p>
+              <p class="credit-names">Brandon Veihl, Bryan Assi</p>
+            </div>
+
+            <div class="credit-item">
+              <p class="credit-role">Fire Effects, LED Design &amp; Build</p>
+              <p class="credit-names">Shawn Jones</p>
+            </div>
+
+            <div class="credit-item">
+              <p class="credit-role">Choreography</p>
+              <p class="credit-names">
+                Kacey Samiee, Jules Vrla, Juli Fischer, Mary Osborne, Journey Jolly, Bow Juggler
+              </p>
+            </div>
+
+            <div class="credit-item">
+              <p class="credit-role">Dancers</p>
+              <p class="credit-names">
+                Kacey Samiee, Jules Vrla, Juli Fischer, Mary Osborne, Katr Fortenberry
+              </p>
+            </div>
+
+            <div class="credit-item">
+              <p class="credit-role">Safety &amp; Fuel Lead and Fire Permitting</p>
+              <p class="credit-names">Sage</p>
+            </div>
+          </div>
+
+          <div class="special-thanks">
+            <p><strong>Special Thanks</strong></p>
+            <p>
+              Special thanks to Dean Woosley for generously providing the truck and trailer used
+              to transport the drones from New Jersey.
+            </p>
+            <p>
+              Special thanks to Julio Lopez, Ace Manning, and Vynal Lens for taking photos and
+              video during our rehearsals that we were able to use for marketing.
+            </p>
+            <div class="special-thanks-actions">
+              <a class="sponsor-cta" href="#">Acknowledgements</a>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
 
     <script>
