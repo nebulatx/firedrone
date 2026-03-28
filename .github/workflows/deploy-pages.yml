@@ -28,7 +28,12 @@ jobs:
       - name: Prepare site
         run: |
           mkdir -p _site
+          mkdir -p _site/assets
           cp index.html _site/index.html
+          if [ -d assets ]; then
+            cp -R assets/. _site/assets/
+            rm -f _site/assets/.gitkeep
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
