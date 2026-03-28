@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fire Drone Show</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        background: #09111f;
+        color: #f7f7f2;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background:
+          radial-gradient(circle at top, rgba(255, 133, 82, 0.28), transparent 38%),
+          linear-gradient(160deg, #09111f 0%, #13233d 45%, #09111f 100%);
+      }
+
+      main {
+        width: min(680px, calc(100% - 3rem));
+        padding: 3rem;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 24px;
+        background: rgba(8, 14, 27, 0.72);
+        text-align: center;
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+      }
+
+      h1 {
+        margin: 0 0 1rem;
+        font-size: clamp(2.5rem, 7vw, 4.5rem);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      p {
+        margin: 0;
+        font-size: 1.125rem;
+        line-height: 1.7;
+        color: rgba(247, 247, 242, 0.88);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Hello, world.</h1>
+      <p>Fire Drone Show is live on GitHub Pages and ready for the next build.</p>
+    </main>
+  </body>
+</html>
