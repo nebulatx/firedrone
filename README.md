@@ -9,6 +9,7 @@ brew install ffmpeg webp
 ```
 
 - The conversion script expects WebP encoding support to be available through `ffmpeg` or `cwebp`.
+- Converted images target a maximum width of `1024` pixels at WebP quality `90`.
 
 ## Photo Conversion
 

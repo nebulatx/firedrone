@@ -4,6 +4,8 @@ set -euo pipefail
 
 SOURCE_DIR="${1:-photo_inbox}"
 OUTPUT_DIR="${2:-assets}"
+MAX_WIDTH=1024
+WEBP_QUALITY=90
 
 has_ffmpeg_encoder=0
 
@@ -28,13 +30,13 @@ while IFS= read -r -d '' file; do
 
   if [ "$has_ffmpeg_encoder" -eq 1 ]; then
     ffmpeg -y -i "$file" \
-      -vf "scale='min(768,iw)':-2" \
+      -vf "scale='min($MAX_WIDTH,iw)':-2" \
       -c:v webp \
-      -quality 82 \
+      -quality "$WEBP_QUALITY" \
       "$output_path" \
       >/dev/null 2>&1
   else
-    cwebp -quiet -resize 768 0 -q 82 "$file" -o "$output_path"
+    cwebp -quiet -resize "$MAX_WIDTH" 0 -q "$WEBP_QUALITY" "$file" -o "$output_path"
   fi
 
   echo "Converted $file -> $output_path"
